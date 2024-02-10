@@ -1,50 +1,66 @@
 #!/usr/bin/python3
 
 """
-The BaseModel class is a class which will serve as the
-base of our model
+The baseModel is a class that will
+serve as the base of our model
 """
 
-from datetime import datetime
-from uuid import uuid4
 import models
+from uuid import uuid4
+from datetime import datetime
 
 
 class BaseModel:
-    """The base class of all class"""
+    """Base class for all our classes"""
 
-    def __init__(self,*args, **kwargs):
-        """serializeing and deserializing class"""
+    def __init__(self, *args, **kwargs):
+        """serializing and deserializung  a class """
+
+        if kwargs == {}:
+            self.id = str(uuid4())
+            self.created_at = datetime.utcnow()
+            self.updated_at = datetime.utcnow()
+            models.storage.new(self)
+            return
+
+        """using Key words"""
 
         if 'id' not in kwargs:
-            kwargs['id'] = str(uuid4)
+            kwargs['id'] = str(uuid4())
         self.id = kwargs['id']
 
-        for Key, Val in kwargs.items():
-            if Key == '__class__':
+        for Key, val in kwargs.items():
+            if Key == "__class_":
                 continue
+
         if "created_at" in kwargs:
-            self.created_at = datetime.now().isoformat()
+            self.created_at = datetime.strptime(
+                    kwargs['created_at'],
+                    '%Y-%m-%dT%H:%M:%S.%f')
+            
         if "updated_at" in kwargs:
-            self.updated_at = datetime.now().isoformat()
+            self.updated_at = datetime.strptime(
+                    kwargs['updated_at'],
+                    '%Y-%m-%dT%H:%M:%S.%f')
 
-        def __str__(self):
-            """string represention on self"""
+    def __str__(self):
+        """str representation of self"""
 
-            str_r = "[{}] ({}) {}"
-            return str_r.format(type(self).__name__,
-                    self.id,
-                    self.__dict__)
+        fmt = "[{}] ({}) {}"
+        return fmt.format(
+                type(self).__name__,
+                self.id,
+                self.__dict__)
 
-        def save(self):
-            """update the variable that updated"""
+    def save(self):
+        """updates the updated variable"""
 
-            self.updated_at = datetime.utcnow().isoformat
-            models.storage.save()
+        self.updated_at = datetime.utcnow()
+        models.storage.save()
 
-        def to_dict(self):
-            """Returns a dictionary representation of self"""
-    
+    def to_dict(self):
+        """Return a dictionary representation of self"""
+
         temp = {**self.__dict__}
         temp['__class__'] = type(self).__name__
         temp['created_at'] = self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
@@ -54,22 +70,26 @@ class BaseModel:
     @classmethod
     def all(cls):
         """Retrieve all current instances of cls"""
+
         return models.storage.find_all(cls.__name__)
 
     @classmethod
     def count(cls):
         """Get the number of all current instances of cls"""
+        
         return len(models.storage.find_all(cls.__name__))
 
     @classmethod
     def create(cls, *args, **kwargs):
-        """Creates an Instance"""
+        """Creates an instance"""
+
         new = cls(*args, **kwargs)
         return new.id
 
     @classmethod
     def show(cls, instance_id):
         """Retrieve an instance"""
+
         return models.storage.find_by_id(
             cls.__name__,
             instance_id
@@ -85,11 +105,8 @@ class BaseModel:
 
     @classmethod
     def update(cls, instance_id, *args):
-        """Updates an instance
-        if args has one elem and its a dict:
-        it updates by key value
-        else:
-        updates by first being key and second being value"""
+        """Updates an instance"""
+        
         if not len(args):
             print("** attribute name missing **")
             return
