@@ -6,13 +6,13 @@ import unittest
 from models.base_model import BaseModel
 from uuid import uuid4
 from models import storage
+from models.city import City
+from models.amenity import Amenity
 from models.review import Review
 from models.state import State
 from datetime import datetime
 import json
 from models.place import Place
-from models.city import City
-from models.amenity import Amenity
 
 
 
