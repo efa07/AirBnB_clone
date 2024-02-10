@@ -1,29 +1,28 @@
 #!/usr/bin/python3
-"""
-The entry point of the Airbnb Project
+""" Defines the console class
 """
 
 
 from cmd import Cmd
-from models.engine.errors import *
-import shlex
+from models import storage
 from models.base_model import BaseModel
 from models.user import User
-from models.place import Place
-from models.review import Review
-from models.city import City
 from models.state import State
+from models.city import City
 from models.amenity import Amenity
-
+from models.place import Place
+from models.engine.errors import *
+import shlex
+from models.review import Review
 
 classes = storage.models
 
 
 class HBNBCommand(Cmd):
-    """ does HBNB commands """
-
+    """ does various HBNB commands """
     prompt = "(hbnb) "
 
+    # Commands
     def do_EOF(self, args):
         """Exits the programme in non-interactive mode"""
         return True
@@ -55,7 +54,7 @@ class HBNBCommand(Cmd):
             pass
 
     def do_show(self, arg):
-        """Show an Instance of Model base on its ModelName and id eg."""
+        """Show an Instance of Model base on its ModelName and id"""
         args, n = parse(arg)
 
         if not n:
@@ -76,7 +75,6 @@ class HBNBCommand(Cmd):
 
     def do_destroy(self, arg):
         """Deletes an Instance of Model base on its ModelName and id."""
-
         args, n = parse(arg)
 
         if not n:
@@ -95,7 +93,10 @@ class HBNBCommand(Cmd):
             pass
 
     def do_all(self, args):
-        """Usage: all or all <class> or <class>.all()"""
+        """
+        Display string representations of all instances of a given class.
+        If no class is specified, displays all instantiated objects.
+        """
         args, n = parse(args)
 
         if n < 2:
@@ -108,9 +109,8 @@ class HBNBCommand(Cmd):
             pass
 
     def do_update(self, arg):
-        """Updates an instance base on its id eg
-        $ update Model id field value
-        Throws errors for missing arguments"""
+        """Updates an instance base on its id"""
+
         args, n = parse(arg)
         if not n:
             print("** class name missing **")
