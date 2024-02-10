@@ -5,7 +5,6 @@ The entry point of the Airbnb Project
 
 
 from cmd import Cmd
-from models import storage
 from models.engine.errors import *
 import shlex
 from models.base_model import BaseModel
