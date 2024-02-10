@@ -32,7 +32,5 @@ class HBNBCommandTestCase(unittest.TestCase):
             self.hbnb.do_create("invalid_class")
         self.assertEqual(self.output.getvalue(), "** class doesn't exist **\n")
 
-    # Add more test cases for other commands...
-
 if __name__ == "__main__":
     unittest.main()
