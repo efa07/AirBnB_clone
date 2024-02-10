@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 """
-Defines  errors in file storage """
+Define errors in file storage 
+"""
 
 
 class ModelNotFoundError(Exception):
     """Raised when an unknown module is passed"""
+    
     def __init__(self, arg="BaseModel"):
         super().__init__(f"Model with name {arg} is not registered!")
 
