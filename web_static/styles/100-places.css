@@ -54,15 +54,15 @@ article > h2 {
 }
 
 .information {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   height: 80px;
   width: 100%;
   border-top: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
   margin-top: 30px;
   padding-top: 10px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .max_guest,
@@ -71,7 +71,6 @@ article > h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* width: 100px; */
 }
 
 .information [class^='icon'] {
@@ -80,35 +79,29 @@ article > h2 {
   background-repeat: no-repeat;
 }
 
-/* .max_guest > p,
-.number_rooms > p,
-.number_bathrooms > p {
-  margin-top: auto;
-  margin-bottom: auto;
-} */
 
 .guest_image {
-  margin-left: auto;
-  margin-right: auto;
   height: 50px;
   width: 50px;
+  margin-left: auto;
+  margin-right: auto;
   background: url('../images/icon_group.png') no-repeat center;
   background-position: center;
 }
 
 .bed_image {
-  margin-left: auto;
-  margin-right: auto;
   height: 50px;
   width: 50px;
+  margin-left: auto;
+  margin-right: auto;
   background: url('../images/icon_bed.png') no-repeat center;
 }
 
 .bath_image {
-  margin-left: auto;
-  margin-right: auto;
   height: 50px;
   width: 50px;
+  margin-left: auto;
+  margin-right: auto;
   background: url('../images/icon_bath.png') no-repeat center;
 }
 
