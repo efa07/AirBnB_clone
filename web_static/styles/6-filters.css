@@ -7,6 +7,7 @@
     text-align: right;
     display: flex;
     justify-content: flex-start;
+    z-index: 8;
 }
 
 button:hover {
@@ -92,4 +93,5 @@ button {
 
 .amenities:hover .popover {
     display: block;
+    
 }

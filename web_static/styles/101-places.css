@@ -55,7 +55,7 @@
   
   .information {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     height: 80px;
     width: 100%;
@@ -63,6 +63,7 @@
     border-bottom: 1px solid #dddddd;
     margin-top: 30px;
     padding-top: 10px;
+    padding-bottom: 10px;
   }
   
   .max_guest,
@@ -72,6 +73,15 @@
     flex-direction: column;
     align-items: center;
   }
+  .max_guests > p{
+    margin: 0;
+  }
+  div.max_guests{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+ 
   
   .information [class^='icon'] {
     height: 50px;
@@ -88,6 +98,8 @@
     background: url('../images/icon_group.png') no-repeat center;
     background-position: center;
   }
+
+
   
   .bed_image {
     height: 50px;
@@ -174,4 +186,5 @@
   .icon-pets {
     background-image: url(../images/icon_pets.png);
   }
+ 
   

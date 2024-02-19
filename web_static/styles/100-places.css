@@ -72,6 +72,14 @@ article > h2 {
   flex-direction: column;
   align-items: center;
 }
+.max_guests > p{
+  margin: 0;
+}
+div.max_guests{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 
 .information [class^='icon'] {
   height: 50px;
